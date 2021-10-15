@@ -1,0 +1,48 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="container">
+    <div class="content d-flex mt-3">
+        <div class="container" style="width:20%;height:100%;">
+            
+            <!--category-->
+            <div class="list-group w-100">
+                
+                <a href="{% url 'home'%}" class="list-group-item list-group-item-action active" aria-current="true">
+                        Toute les categories
+                </a>
+                {% for categories in cate %}
+                <a href="/category/{{categories.pk}}" class="list-group-item list-group-item-action">{{categories.title}}</a>
+                {% endfor %}
+            </div>
+                
+        </div>
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for i in photo %}
+                <div class="col">
+                    
+                    <div class="card w-100">
+                        <img src="{{i.image.url}}" class="card-img-top" alt="{{i.title}}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{i.title}}</h5>
+                            <p class="card-text">{{i.detail}}</p>
+                            <div class="card-footer">
+                                <small class="text-muted">{{i.date}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <h2> désoler!!! Mais il n'y a aucune photos pour le moment</h2>
+            {% endfor %}
+               
+            </div>
+           
+        </div>
+        
+                                
+    </div>
+</div>
+
+{% endblock content %}
